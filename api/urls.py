@@ -1,9 +1,9 @@
-from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 
-app_name = 'api'
+from .views import PomodoroList, PomodoroDetail
+
+app_name = 'pomodoro'
 urlpatterns = [
-    path('', include('pomodoro.urls', namespace="pomodoro")),
-    path('admin/', admin.site.urls),
-    path('api-auth/', include('rest_framework.urls')),
+    path('', PomodoroList.as_view()),
+    path('<int:pk>/', PomodoroDetail.as_view()),
 ]
